@@ -1,0 +1,33 @@
+.error {
+  color: red;
+  font-size: 12px;
+}
+
+.form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.user-list {
+  margin-top: 2rem;
+  padding: 1rem;
+  border-top: 1px solid #ddd;
+
+  h2 {
+    font-size: 1.2rem;
+    color: #555;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      padding: 0.5rem 0;
+      border-bottom: 1px solid #eee;
+    }
+  }
+}

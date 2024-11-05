@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --output-path=dist --base-href=/https://github.com/Jeeazy971/registration-form-app.git/",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "npx angular-cli-ghpages --dir=dist"
   },
   "private": true,
   "dependencies": {
@@ -31,6 +32,7 @@
     "@angular/compiler-cli": "^18.2.0",
     "@briebug/jest-schematic": "^6.0.0",
     "@types/jest": "29.5.14",
+    "angular-cli-ghpages": "^2.0.3",
     "jest": "^29.7.0",
     "typescript": "~5.5.2"
   }

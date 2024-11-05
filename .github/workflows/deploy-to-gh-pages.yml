@@ -38,7 +38,7 @@ jobs:
           name: codecov-coverage-report
 
       - name: Build project
-        run: npm run build -- --output-path=dist --base-href=/votre-repository/
+        run: npm run build -- --output-path=dist --base-href=/https://github.com/Jeeazy971/registration-form-app.git/
 
   deploy:
     runs-on: ubuntu-latest

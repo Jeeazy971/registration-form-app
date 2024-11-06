@@ -25,7 +25,7 @@ jobs:
         run: npm ci
 
       - name: Run unit tests
-        run: npm run test -- --watch=false --code-coverage
+        run: npm run test -- --watch=false
         env:
           CI: true
 

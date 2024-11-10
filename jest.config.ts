@@ -1,15 +1,14 @@
-import type { Config } from 'jest';
+import 'jest-preset-angular/setup-jest';
 
-const config: Config = {
+export default {
   preset: 'jest-preset-angular',
+  setupFilesAfterEnv: ['<rootDir>/setup-jest.ts'],
   transform: {
-    '^.+\\.(ts|html)$': 'ts-jest',
+    '^.+\\.(ts|js|html)$': 'ts-jest',
   },
   testEnvironment: 'jsdom',
-  moduleFileExtensions: ['ts', 'html', 'js', 'json'],
+  moduleFileExtensions: ['ts', 'js', 'html', 'json'],
   moduleNameMapper: {
     '^src/(.*)$': '<rootDir>/src/$1',
   },
 };
-
-export default config;

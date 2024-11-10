@@ -9,7 +9,7 @@
     "watch": "ng build --watch --configuration development",
     "test:init": "ng test",
     "test": "jest --config jest.config.js",
-    "deploy": "ng deploy --base-href=https://jeeazy971.github.io/registration-form-app/",
+    "deploy": "ng deploy --base-href=/registration-form-app/",
     "clean": "rimraf dist"
   },
   "private": true,

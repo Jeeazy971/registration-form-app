@@ -4,8 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build --output-path=dist/registration-form-app --base-href=/registration-form-app/",
+    "build": "ng build",
+    "build:prod": "ng build --configuration=production --base-href=/registration-form-app/",
     "watch": "ng build --watch --configuration development",
+    "test:init": "ng test",
     "test": "jest --config jest.config.js",
     "deploy": "ng deploy --base-href=https://jeeazy971.github.io/registration-form-app/",
     "clean": "rimraf dist"
@@ -28,7 +30,7 @@
   },
   "devDependencies": {
     "@angular-builders/jest": "18.0.0",
-    "@angular-devkit/build-angular": "^18.2.7",
+    "@angular-devkit/build-angular": "^18.2.11",
     "@angular/cli": "^18.2.7",
     "@angular/compiler-cli": "^18.2.0",
     "@briebug/jest-schematic": "^6.0.0",

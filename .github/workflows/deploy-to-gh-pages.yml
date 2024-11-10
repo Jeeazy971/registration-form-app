@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - main
+      - prod
       - develop
       - gh-pages
       - feature/*
   pull_request:
     branches:
       - main
+      - prod
       - develop
       - gh-pages
       - feature/*
@@ -91,7 +93,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: dist/registration-form-app
+          path: registration-form-app/dist/browser
 
       - name: Set Git Identity
         run: |

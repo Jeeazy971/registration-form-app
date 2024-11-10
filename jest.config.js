@@ -1,7 +1,8 @@
 module.exports = {
   preset: "jest-preset-angular",
+  setupFilesAfterEnv: ["<rootDir>/setup-jest.ts"],
   transform: {
-    "^.+\\.(ts|html)$": "ts-jest",
+    "^.+\\.(ts|js|html)$": "jest-preset-angular",
   },
   testEnvironment: "jsdom",
   moduleFileExtensions: ["ts", "html", "js", "json"],
@@ -10,6 +11,7 @@ module.exports = {
     "ts-jest": {
       tsconfig: "tsconfig.spec.json",
       stringifyContentPathRegex: "\\.(html|svg)$",
+      isolatedModules: true,
     },
   },
   moduleNameMapper: {

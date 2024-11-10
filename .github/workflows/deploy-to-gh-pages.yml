@@ -4,12 +4,14 @@ on:
   push:
     branches:
       - main
+      - prod
       - develop
       - gh-pages
       - feature/*
   pull_request:
     branches:
       - main
+      - prod
       - develop
       - gh-pages
       - feature/*
@@ -68,7 +70,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: dist
-          path: dist/registration-form-app
+          path: dist/browser
 
   deploy:
     name: Deploy to GitHub Pages
@@ -91,7 +93,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: dist
-          path: dist/registration-form-app
+          path: dist/browser
 
       - name: Set Git Identity
         run: |
@@ -99,6 +101,6 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/registration-form-app --no-silent
+        run: npx angular-cli-ghpages --dir=dist/browser --no-silent
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

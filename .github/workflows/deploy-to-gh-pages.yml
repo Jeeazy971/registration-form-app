@@ -5,11 +5,13 @@ on:
     branches:
       - main
       - develop
+      - gh-pages
       - feature/*
   pull_request:
     branches:
       - main
       - develop
+      - gh-pages
       - feature/*
   workflow_dispatch:
 

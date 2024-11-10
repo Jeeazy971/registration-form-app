@@ -7,7 +7,7 @@
     "build": "ng build --output-path=dist/registration-form-app --base-href=/registration-form-app/",
     "watch": "ng build --watch --configuration development",
     "test": "jest --config jest.config.js",
-    "deploy": "npx angular-cli-ghpages --dir=dist/registration-form-app --no-silent",
+    "deploy": "ng deploy --base-href=https://jeeazy971.github.io/registration-form-app/",
     "clean": "rimraf dist"
   },
   "private": true,

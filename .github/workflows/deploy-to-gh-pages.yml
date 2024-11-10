@@ -6,31 +6,42 @@ on:
       - main
       - develop
       - feature/*
+  pull_request:
+    branches:
+      - main
+      - develop
+      - feature/*
   workflow_dispatch:
 
 jobs:
   test:
-    name: Run tests and collect coverage
+    name: Run Tests and Generate Coverage
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
         with:
-          fetch-depth: 0
+          node-version: "20"
 
-      - name: Set up Node
-        uses: actions/setup-node@v4
+      - name: Install Dependencies
+        run: npm ci
 
-      - name: Install dependencies
-        run: npm install
+      - name: Run Unit Tests
+        run: npm run test
+        env:
+          CI: true
 
-      - name: Run tests
-        run: npx jest --watch=false --code-coverage
-
-      - name: Upload results to Codecov
-        uses: codecov/codecov-action@v4
+      - name: Upload Coverage to Codecov
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-coverage-report
 
   build:
     name: Build Project
@@ -41,7 +52,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set Up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
@@ -50,7 +61,7 @@ jobs:
         run: npm ci
 
       - name: Build Project
-        run: npm run build -- --output-path=dist --base-href=/registration-form-app/
+        run: npm run build
 
       - name: Upload Build Artifacts
         uses: actions/upload-artifact@v3
@@ -67,7 +78,7 @@ jobs:
       - name: Checkout Code
         uses: actions/checkout@v3
 
-      - name: Set Up Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: "20"
@@ -82,6 +93,6 @@ jobs:
           path: dist
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist
+        run: npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

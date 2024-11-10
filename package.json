@@ -6,7 +6,7 @@
     "start": "ng serve",
     "build": "ng build --output-path=dist --base-href=/registration-form-app/",
     "watch": "ng build --watch --configuration development",
-    "test": "npx jest --watch=false --code-coverage",
+    "test": "npx jest --coverage --watchAll=false",
     "deploy": "npx angular-cli-ghpages --dir=dist/registration-form-app/browser",
     "clean": "rimraf dist"
   },

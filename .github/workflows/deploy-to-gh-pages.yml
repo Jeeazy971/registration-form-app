@@ -56,8 +56,10 @@ jobs:
         with:
           node-version: "20"
 
-      - name: Install dependencies
-        run: npm ci
+      - name: Clean install
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
 
       - name: Build the project
         run: npm run build -- --output-path=dist --base-href=/registration-form-app/

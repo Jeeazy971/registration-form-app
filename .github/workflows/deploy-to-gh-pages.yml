@@ -92,6 +92,6 @@ jobs:
           path: dist/registration-form-app
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/registration-form-app
+        run: npx angular-cli-ghpages --dir=dist/registration-form-app --no-silent
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

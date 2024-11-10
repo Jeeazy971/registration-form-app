@@ -45,7 +45,7 @@ jobs:
   build:
     name: Build the project
     runs-on: ubuntu-latest
-    needs: test # Cette ligne indique que l'étape de test doit réussir avant que le build commence
+    needs: test
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -70,7 +70,7 @@ jobs:
   deploy:
     name: Deploy to GitHub Pages
     runs-on: ubuntu-latest
-    needs: build # Cette ligne indique que le déploiement ne s'exécute qu'après un build réussi
+    needs: build
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -79,9 +79,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
-
-      - name: Install dependencies
-        run: npm install
 
       - name: Download build artifacts
         uses: actions/download-artifact@v3
@@ -95,6 +92,6 @@ jobs:
           git config user.name "GitHub Actions"
 
       - name: Deploy to GitHub Pages
-        run: npx angular-cli-ghpages --dir=dist/registration-form-app --no-silent
+        run: npm run deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

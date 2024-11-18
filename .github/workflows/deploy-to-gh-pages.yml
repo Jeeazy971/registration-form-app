@@ -4,11 +4,13 @@ on:
   push:
     branches:
       - main
+      - prod
       - develop
       - feature/*
   pull_request:
     branches:
       - main
+      - prod
       - develop
       - feature/*
   workflow_dispatch:
@@ -18,7 +20,7 @@ jobs:
     name: Run tests and generate coverage
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Cache Node.js modules
@@ -64,7 +66,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
@@ -90,21 +92,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup Node.js
+      - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"
 
-      - name: Download build artifacts
-        uses: actions/download-artifact@v3
-        with:
-          name: dist
-          path: dist/registration-form-app
-
-      - name: Set Git Identity
-        run: |
-          git config user.email "actions@github.com"
-          git config user.name "GitHub Actions"
+      - name: Install dependencies
+        run: npm install
 
       - name: Deploy to GitHub Pages
         run: npm run deploy

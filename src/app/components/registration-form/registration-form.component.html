@@ -1,63 +1,95 @@
 <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()" class="form-container">
+  <!-- Prénom -->
   <mat-form-field appearance="outline">
     <mat-label>Prénom</mat-label>
     <mat-icon matPrefix>person</mat-icon>
     <input matInput formControlName="firstName" />
-    <mat-error *ngIf="registrationForm.get('firstName')?.invalid && registrationForm.get('firstName')?.touched">
+    <mat-error *ngIf="registrationForm.get('firstName')?.hasError('required')">
+      Le prénom est obligatoire
+    </mat-error>
+    <mat-error *ngIf="registrationForm.get('firstName')?.hasError('invalidName')">
       Prénom invalide
     </mat-error>
   </mat-form-field>
 
+  <!-- Nom -->
   <mat-form-field appearance="outline">
     <mat-label>Nom</mat-label>
     <mat-icon matPrefix>person</mat-icon>
     <input matInput formControlName="lastName" />
-    <mat-error *ngIf="registrationForm.get('lastName')?.invalid && registrationForm.get('lastName')?.touched">
+    <mat-error *ngIf="registrationForm.get('lastName')?.hasError('required')">
+      Le nom est obligatoire
+    </mat-error>
+    <mat-error *ngIf="registrationForm.get('lastName')?.hasError('invalidName')">
       Nom invalide
     </mat-error>
   </mat-form-field>
 
+  <!-- Email -->
   <mat-form-field appearance="outline">
     <mat-label>Email</mat-label>
     <mat-icon matPrefix>email</mat-icon>
     <input matInput type="email" formControlName="email" />
-    <mat-error *ngIf="registrationForm.get('email')?.invalid && registrationForm.get('email')?.touched">
+    <mat-error *ngIf="registrationForm.get('email')?.hasError('required')">
+      L'email est obligatoire
+    </mat-error>
+    <mat-error *ngIf="registrationForm.get('email')?.hasError('email')">
       Email invalide
     </mat-error>
   </mat-form-field>
 
+  <!-- Date de naissance -->
   <mat-form-field appearance="outline">
     <mat-label>Date de naissance</mat-label>
     <mat-icon matPrefix>cake</mat-icon>
     <input matInput type="date" formControlName="birthDate" />
+    <mat-error *ngIf="registrationForm.get('birthDate')?.hasError('required')">
+      La date de naissance est obligatoire
+    </mat-error>
     <mat-error *ngIf="registrationForm.get('birthDate')?.hasError('ageInvalid')">
-      Vous devez avoir au moins 18 ans.
+      Vous devez avoir au moins 18 ans
     </mat-error>
   </mat-form-field>
 
+  <!-- Ville -->
   <mat-form-field appearance="outline">
     <mat-label>Ville</mat-label>
     <mat-icon matPrefix>location_city</mat-icon>
     <input matInput formControlName="city" />
+    <mat-error *ngIf="registrationForm.get('city')?.hasError('required')">
+      La ville est obligatoire
+    </mat-error>
   </mat-form-field>
 
+  <!-- Code postal -->
   <mat-form-field appearance="outline">
     <mat-label>Code postal</mat-label>
     <mat-icon matPrefix>location_on</mat-icon>
     <input matInput formControlName="postalCode" />
-    <mat-error *ngIf="registrationForm.get('postalCode')?.invalid && registrationForm.get('postalCode')?.touched">
-      Code postal invalide
+    <mat-error *ngIf="registrationForm.get('postalCode')?.hasError('required')">
+      Le code postal est obligatoire
+    </mat-error>
+    <mat-error *ngIf="registrationForm.get('postalCode')?.hasError('pattern')">
+      Code postal invalide (5 chiffres requis)
     </mat-error>
   </mat-form-field>
 
+  <!-- Boutons -->
   <div class="button-group">
-    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">Enregistrer</button>
-    <button mat-stroked-button color="warn" type="button" (click)="registrationForm.reset()">Réinitialiser</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!registrationForm.valid">
+      Enregistrer
+    </button>
+    <button mat-stroked-button color="warn" type="button" (click)="registrationForm.reset()">
+      Réinitialiser
+    </button>
   </div>
 </form>
 
+<!-- Liste des utilisateurs -->
 <div *ngIf="registeredUsers.length > 0" class="user-list">
-  <h2>Utilisateurs enregistrés <mat-badge [content]="registeredUsers.length" color="accent"></mat-badge></h2>
+  <h2>Utilisateurs enregistrés
+    <mat-badge [content]="registeredUsers.length" color="accent"></mat-badge>
+  </h2>
   <mat-divider></mat-divider>
   <ul>
     <li *ngFor="let user of registeredUsers">
